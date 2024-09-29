@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS= -Wall -Wextra -Werror -std=c++98
 
-TARGET=megaphone
+TARGET=Phonebook
 
-SRC= megaphone.cpp
+SRC= main.cpp
 OBJ= $(SRC:.cpp=.o)
 
 all: $(TARGET)
