@@ -3,24 +3,31 @@
 #include <ctype.h>
 #include <iostream>
 
-// 小文字を大文字に変換するプログラムを作成してください。引数がない場合は、何もしません
 int main(int ac, char *av[])
 {
 	if (ac == 1)
 	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return 0;
 	}
 	else
 	{
 		size_t i = 0;
-		while (i < strlen(av[1]))
+		size_t j = 1;
+		while ((int)j < ac)
 		{
-			if (islower(av[1][i]))
+			i = 0;
+			while (i < strlen(av[j]))
 			{
-				av[1][i] = toupper(av[1][i]);
+				if (islower(av[j][i]))
+				{
+					av[j][i] = toupper(av[j][i]);
+				}
+				std::cout << av[j][i];
+				i++;
 			}
-			i++;
+			j++;
 		}
 	}
-	std::cout << av[1] << std::endl;
+	return 0;
 }
