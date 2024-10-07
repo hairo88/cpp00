@@ -1,4 +1,41 @@
-#include "ex01.h"
+// #include "ex01.h"
+// #include "Contact.hpp"
+#include "Phonebook.hpp"
+
+std::string getInput(const std::string &prompt)
+{
+	std::string input;
+	do{
+		std::cout << prompt;
+		std::getline(std::cin, input);
+	} while (input.empty());
+	return input;
+}
+
+long long getNumber(const std::string &prompt)
+{
+	std::string input;
+	long long number;
+
+	while (true)
+	{
+		std::cout << prompt;
+		std::getline(std::cin, input);
+		if (input.empty())
+			continue;
+		
+		try{
+			number = std::stoll(input);
+			break;
+		} catch (const std::exception &e) {
+			std::cout << "Invalid input" << std::endl;
+		} catch (const std::out_of_range& e)
+		{
+			std::cerr << "Number out of range" << std::endl;
+		}
+	}
+	return number;
+}
 
 int main(void)
 {
@@ -17,7 +54,7 @@ int main(void)
 				getInput("Enter first name: "),
 				getInput("Enter last name: "),
 				getInput("Enter nickname: "),
-				getInput("Enter phone number: "),
+				getNumber("Enter phone number: "),
 				getInput("Enter darkest secret: ")
 			);
 			phoneBook.addContact(newContact);
