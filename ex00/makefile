@@ -3,7 +3,7 @@ CFLAGS= -Wall -Wextra -Werror -std=c++98
 
 TARGET=megaphone
 
-SRC= megaphone.cpp
+SRC= Megaphone.cpp
 OBJ= $(SRC:.cpp=.o)
 
 all: $(TARGET)

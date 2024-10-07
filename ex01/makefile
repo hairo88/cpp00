@@ -4,8 +4,8 @@ CFLAGS= -Wall -Wextra -Werror -std=c++98
 TARGET=Phonebook
 
 SRC= main.cpp \
-	phonebook.cpp \
-	contact.cpp
+	Phonebook.cpp \
+	Contact.cpp
 OBJ= $(SRC:.cpp=.o)
 
 all: $(TARGET)
