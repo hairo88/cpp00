@@ -33,7 +33,29 @@ long long Contact::setPhoneNumber(const std::string& phone)
 	return phoneNumber;
 }
 
-long long Contact::setNumber(const std::string &prompt)
+std::string Contact::getInput(const std::string &prompt)
+{
+	std::string input;
+	do{
+		std::cout << prompt;
+		std::getline(std::cin, input);
+	} while (input.empty());
+	return input;
+}
+
+bool Contact::isNumber(const std::string &str) const
+{
+	std::string::const_iterator it = str.begin();
+	while (it != str.end())
+	{
+		if (!std::isdigit(*it))
+			return false;
+		it++;
+	}
+	return true;
+}
+
+int Contact::setNumber(const std::string &prompt)
 {
 	std::string input;
 	long long 	number;
@@ -55,6 +77,11 @@ long long Contact::setNumber(const std::string &prompt)
 			try {
 				std::istringstream iss(input);
 				iss >> number;
+				printf("number = %lld\n", number);
+				if (number < 0 || number > INT_MAX) {
+					std::cerr << "Invalid input: " << std::endl;
+					continue;
+				}
 				std:: cout << "istringstram = [" << number << "]\n";
 				return number;
 			} catch (const std::exception &e) {

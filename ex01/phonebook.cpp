@@ -37,6 +37,38 @@ void PhoneBook::displayContact(int index) const
 	}
 }
 
+int PhoneBook::setNumber(const std::string &prompt)
+{
+	std::string input;
+	int number;
+
+	while (true) {
+		std::cout << prompt;
+		std::getline(std::cin, input);
+
+		bool valid = true;
+		for (std::string::size_type i = 0; i < input.size(); i++)	{
+			char c = input[i];
+			if (!isdigit(c)) {
+				valid = false;
+				break;
+			}
+		}
+
+		if (valid) {
+			try {
+				std::istringstream iss(input);
+				iss >> number;
+				return number;
+			} catch (const std::exception &e) {
+				std::cerr << "Invalid input" << std::endl;
+			}
+		} else {
+			std::cerr << "Invalid input: Please enter only numbers." << std::endl;
+		}
+	}
+}
+
 std::string PhoneBook::truncate(std::string str) const
 {
 	if (str.length() > 10)

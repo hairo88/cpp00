@@ -1,5 +1,3 @@
-// #include "ex01.h"
-// #include "Contact.hpp"
 #include "Phonebook.hpp"
 #include <unistd.h>
 
@@ -27,28 +25,24 @@ int main(void)
 		if (command == "ADD") {
 			Contact newContact;
 			newContact.setContact(
-				getInput("Enter first name: "),
-				getInput("Enter last name: "),
-				getInput("Enter nickname: "),
+				newContact.getInput("Enter first name: "),
+				newContact.getInput("Enter last name: "),
+				newContact.getInput("Enter nickname: "),
 				newContact.setNumber("Enter phone number: "),
-				getInput("Enter darkest secret: ")
+				newContact.getInput("Enter darkest secret: ")
 			);
 			phoneBook.addContact(newContact);
 		}
 		else if (command == "SEARCH") {
 			phoneBook.searchContacts();
 			int index;
-			std::cout << "Enter index to display: ";
-			std::cin >> index;
-			std::cin.ignore();
-			printf("error\n");
-			phoneBook.displayContact(index);
+			index = phoneBook.setNumber("Enter index to display: ");			phoneBook.displayContact(index);
 		}
 		else if (command == "EXIT")
 			break;
 		else
 			std::cout << "Invalid command" << std::endl;
-		sleep(1);
+		// sleep(100);
 	}
 
 	std::cout << "Goodbye! All contacts are lost forever!" << std::endl;

@@ -11,17 +11,20 @@ class Contact {
 		std::string firstName;
 		std::string lastName;
 		std::string nickname;
-		long long phoneNumber;
+		int phoneNumber;
 		std::string darkestSecret;
 	public:
 		void setContact(const std::string& first, const std::string& last, const std::string& nick, long long phone, const std::string& darkest);
 		void display() const;
+		std::string getInput(const std::string &prompt);
 		std::string getFirstName() const;
 		std::string getLastName() const;
 		std::string getNickname() const;
 		long long getPhoneNumber() const;
-		long long setNumber(const std::string &prompt);
+		int setNumber(const std::string &prompt);
 		long long setPhoneNumber(const std::string& phone);
+	private:
+		bool isNumber(const std::string &str) const;
 };
 
 #endif

@@ -17,6 +17,7 @@ class PhoneBook {
 		void addContact(const Contact &contact);
 		void searchContacts() const;
 		void displayContact(int index) const;
+		int  setNumber(const std::string &prompt);
 	private:
 		std::string truncate(std::string str) const;
 };
