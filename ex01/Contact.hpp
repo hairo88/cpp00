@@ -20,6 +20,7 @@ class Contact {
 		std::string getLastName() const;
 		std::string getNickname() const;
 		long long getPhoneNumber() const;
+		long long setNumber(const std::string &prompt);
 		long long setPhoneNumber(const std::string& phone);
 };
 

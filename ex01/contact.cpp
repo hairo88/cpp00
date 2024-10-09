@@ -28,10 +28,42 @@ long long Contact::setPhoneNumber(const std::string& phone)
 			return -1;
 		it++;
 	}
-	// phoneNumber = std::stoll(phone);
 	std::istringstream iss(phone);
 	iss >> phoneNumber;
 	return phoneNumber;
+}
+
+long long Contact::setNumber(const std::string &prompt)
+{
+	std::string input;
+	long long 	number;
+
+	while (true) {
+		std::cout << prompt;
+		std::getline(std::cin, input);
+
+		bool valid = true;
+		for (std::string::size_type i = 0; i < input.size(); i++)	{
+			char c = input[i];
+			if (!isdigit(c)) {
+				valid = false;
+				break;
+			}
+		}
+
+		if (valid) {
+			try {
+				std::istringstream iss(input);
+				iss >> number;
+				std:: cout << "istringstram = [" << number << "]\n";
+				return number;
+			} catch (const std::exception &e) {
+				std::cerr << "Invalid input" << std::endl;
+			}
+		} else {
+			std::cerr << "Invalid input: Please enter only numbers." << std::endl;
+		}
+	}
 }
 
 std::string Contact::getFirstName() const
