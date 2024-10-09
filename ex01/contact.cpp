@@ -28,7 +28,9 @@ long long Contact::setPhoneNumber(const std::string& phone)
 			return -1;
 		it++;
 	}
-	phoneNumber = std::stoll(phone);
+	// phoneNumber = std::stoll(phone);
+	std::istringstream iss(phone);
+	iss >> phoneNumber;
 	return phoneNumber;
 }
 

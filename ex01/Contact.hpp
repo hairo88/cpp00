@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <cstdio>
+#include <sstream>
 
 class Contact {
 	private:

@@ -12,29 +12,64 @@ std::string getInput(const std::string &prompt)
 	return input;
 }
 
-long long getNumber(const std::string &prompt)
-{
-	std::string input;
-	long long number;
+// long long getNumber(const std::string &prompt)
+// {
+// 	std::string input;
+// 	long long number;
 
-	while (true)
-	{
+// 	while (true)
+// 	{
+// 		for (char c : input) {
+// 			if (!isdigit(c))
+// 				throw std::out_of_range("Invalid number");
+// 		}
+
+// 		try{
+// 			std::istringstream iss(input);
+// 			iss >> number;
+// 			printf("istringstream = [%lld]\n", number);
+// 			break;
+// 		} 
+// 		catch (const std::out_of_range& e) {
+// 			std::cerr << "Number out of range" << std::endl;
+// 		}
+// 		catch (const std::exception &e) {
+// 			std::cout << "Invalid input" << std::endl;
+// 		} 
+// 	}
+// 	return number;
+// }
+
+long long getNumber(const std::string &prompt) {
+	std::string input;
+	long long 	number;
+
+	while (true) {
 		std::cout << prompt;
 		std::getline(std::cin, input);
-		if (input.empty())
-			continue;
-		
-		try{
-			number = std::stoll(input);
-			break;
-		} catch (const std::exception &e) {
-			std::cout << "Invalid input" << std::endl;
-		} catch (const std::out_of_range& e)
-		{
-			std::cerr << "Number out of range" << std::endl;
+
+		bool valid = true;
+		for (std::string::size_type i = 0; i < input.size(); i++)	{
+			char c = input[i];
+			if (!isdigit(c)) {
+				valid = false;
+				break;
+			}
+		}
+
+		if (valid) {
+			try {
+				std::istringstream iss(input);
+				iss >> number;
+				std:: cout << "istringstram = [" << number << "]\n";
+				return number;
+			} catch (const std::exception &e) {
+				std::cerr << "Invalid input" << std::endl;
+			}
+		} else {
+			std::cerr << "Invalid input: Please enter only numbers." << std::endl;
 		}
 	}
-	return number;
 }
 
 int main(void)
@@ -73,6 +108,6 @@ int main(void)
 			std::cout << "Invalid command" << std::endl;
 	}
 
-	std::cout << "Boodbye! All contacts are lost forever!" << std::endl;
+	std::cout << "Goodbye! All contacts are lost forever!" << std::endl;
 	return 0;
 }
