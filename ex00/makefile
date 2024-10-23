@@ -20,4 +20,7 @@ clean:
 fclean:
 	rm -f $(OBJ) $(TARGET)
 
+re: fclean
+	all
+
 .PHONY: all clean

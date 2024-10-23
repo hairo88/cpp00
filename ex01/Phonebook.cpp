@@ -4,13 +4,23 @@ void PhoneBook::addContact(const Contact &contact)
 {
 	if (count < 8)
 	{
-		contacts[count] = contact;
+		contacts[count % 8] = contact;
 		count++;
 	}
 	else
 	{
+		count++;
+		std::cout << "count : " << count << std::endl;
 		std::cout << "Phonebook is full!" << std::endl;
 	}
+}
+
+std::string PhoneBook::getFormattedContact(const Contact& contact) const {
+	std::stringstream ss;
+	ss << std::setw(10) << contact.getFirstName() << "|"
+	<< std::setw(10) << contact.getLastName() << "|"
+	<< std::setw(10) << contact.getNickname();
+	return ss.str();
 }
 
 void PhoneBook::searchContacts() const
@@ -18,10 +28,8 @@ void PhoneBook::searchContacts() const
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	for (int i = 0; i < count; i++)
 	{
-		std::cout << "|          " << i << "|"
-			<< std::setw(10) << truncate(contacts[i].getFirstName()) << "|"
-			<< std::setw(10) << truncate(contacts[i].getLastName()) << "|"
-			<< std::setw(10) << truncate(contacts[i].getNickname()) << "|" << std::endl;
+		std::string formatted = getFormattedContact(contacts[i]);
+		std::cout << "|          " << i << "|" << formatted << std::endl;
 	}
 }
 

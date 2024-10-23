@@ -20,6 +20,7 @@ class PhoneBook {
 		int  setNumber(const std::string &prompt);
 	private:
 		std::string truncate(std::string str) const;
+		std::string getFormattedContact(const Contact& contact) const ;
 };
 
 #endif
